@@ -2,7 +2,7 @@ import { Validators } from "../../../config/validator";
 
 
 
-class RegisterUserDTo {
+export class RegisterUserDTo {
     constructor(
         public name: string,
         public email: string,
