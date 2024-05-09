@@ -1,5 +1,5 @@
 import { Request,Response } from "express";
-import { RegisterUserDTo } from "../../domain/indext";
+import { RegisterUserDTo } from "../../domain";
 RegisterUserDTo
 export class AuthController {
     constructor() {}
