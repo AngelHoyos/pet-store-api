@@ -11,7 +11,7 @@ export class AuthDataSourceImpl implements AuthDataSources {
             name,
             email,
             password,
-            ['USER']);
+            ["USER"]);
       }catch(error){
         if (error instanceof CustomError) {
             throw error;
