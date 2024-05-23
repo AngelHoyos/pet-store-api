@@ -1,3 +1,4 @@
+import { UserModel } from "../../data/models/users.model";
 import { AuthDataSources, CustomError, RegisterUserDTo, UserEntity } from "../../domain";
 
 
@@ -6,12 +7,23 @@ export class AuthDataSourceImpl implements AuthDataSources {
       const {name, email, password} = registerUserDTo;
 
       try {
+
+const exists= await UserModel.findOne({email})
+if (exists) throw CustomError.badRequest("User already exists");
+
+const user=await UserModel.create({
+  name:name,
+  email:email,
+  password:password
+})
+await user.save()
+
         return new UserEntity(
-            '1',
+            user.id,
             name,
             email,
             password,
-            ["USER"]);
+            user.roles);
       }catch(error){
         if (error instanceof CustomError) {
             throw error;
