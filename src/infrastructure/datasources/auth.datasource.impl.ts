@@ -1,7 +1,7 @@
 import { BcryptAdapter } from "../../config";
 import { UserModel } from "../../data/models/users.model";
 import { AuthDataSources, CustomError, RegisterUserDTo, UserEntity } from "../../domain";
-
+import { UserMapper } from "../mappers/user.mapper";
 type HashFuntion= (password: string) => string;
 type CompareFuntion=(password: string, hashed:string)=>boolean
 
@@ -27,12 +27,7 @@ const user=await UserModel.create({
 })
 await user.save()
 
-        return new UserEntity(
-            user.id,
-            name,
-            email,
-            user.password,
-            user.roles);
+        return UserMapper.userEntityFromObject(user)
       }catch(error){
         if (error instanceof CustomError) {
             throw error;
