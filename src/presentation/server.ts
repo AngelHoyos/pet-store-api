@@ -1,5 +1,6 @@
 import express, { Router } from "express";
-
+import swaggerUI from "swagger-ui-express";
+import swaggerSetup from "../docs/swagger";
 interface Options{
   port?: number;
   routes:Router;
@@ -18,12 +19,12 @@ export class Server {
   }
 
   async start () {
+    this.app.use("/documentation",swaggerUI.serve,swaggerUI.setup(swaggerSetup))
 
     this.app.use(express.json());
     this.app.use(express.urlencoded({extended:true}))
 
     this.app.use(this.routes);
-    
     this.app.listen(this.port, () => {
         console.log(`Server is running on port ${this.port}`);
         

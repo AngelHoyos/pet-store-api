@@ -2,8 +2,7 @@ import { envs } from "./config/envs";
 import { MongoDatabase } from "./data/mongodb";
 import { AppRoutes } from "./presentation/routes";
 import { Server } from "./presentation/server";
-
-
+import {  } from "../src/presentation/auth/routes";
 (()=>{
     main()
 })()
